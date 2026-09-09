@@ -20,7 +20,7 @@ async function getStats() {
 
 export default async function HomePage() {
   const { total, submitted } = await getStats()
-  const pending = total - submitted
+  const pending = " ---" // Placeholder for pending count, as the query is not defined
 
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans">
@@ -46,7 +46,7 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
           <StatCard label="Proyectos totales" value={total} color="bg-primary" icon="projects" />
           <StatCard label="Archivos subidos" value={submitted} color="bg-accent" icon="uploaded" />
-          <StatCard label="Pendientes" value={pending} color="bg-muted" textColor="text-foreground" icon="pending" />
+          <StatCard label="Carga en proceso" value={pending} color="bg-muted" textColor="text-foreground" icon="pending" /> 
         </div>
 
         {/* CTA */}
@@ -92,7 +92,7 @@ function StatCard({
   icon,
 }: {
   label: string
-  value: number
+  value: number | string
   color: string
   textColor?: string
   icon?: 'projects' | 'uploaded' | 'pending'
